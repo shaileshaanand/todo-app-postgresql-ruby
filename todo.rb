@@ -26,15 +26,15 @@ class Todo < ActiveRecord::Base
   def self.show_list
     puts "My Todo-list\n\nOverdue"
     all.
-      filter { |todo| todo.overdue? }.
+      where("due_date < ?", Date.today).
       map { |todo| puts todo.to_displayable_string }
     puts "\n\nDue Today"
     all.
-      filter { |todo| todo.due_today? }.
+      where(due_date: Date.today).
       map { |todo| puts todo.to_displayable_string }
     puts "\n\nDue Later"
     all.
-      filter { |todo| todo.due_later? }.
+      where("due_date > ?", Date.today).
       map { |todo| puts todo.to_displayable_string }
   end
 
