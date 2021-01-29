@@ -37,11 +37,11 @@ class Todo < ActiveRecord::Base
 
   def self.show_list
     puts "My Todo-list\n\nOverdue"
-    self.overdue.map { |todo| puts todo.to_displayable_string }
+    puts self.overdue.map { |todo| todo.to_displayable_string }.join("\n")
     puts "\n\nDue Today"
-    self.due_today.map { |todo| puts todo.to_displayable_string }
+    puts self.due_today.map { |todo| todo.to_displayable_string }.join("\n")
     puts "\n\nDue Later"
-    self.due_later.map { |todo| puts todo.to_displayable_string }
+    puts self.due_later.map { |todo| todo.to_displayable_string }.join("\n")
   end
 
   def self.add_task(todo_hash)
